@@ -3,7 +3,7 @@ data_dir = "/Users/shenfan/Code/Project/GraphWorld/data/"
 
 data_file = {"facebook": "facebook/facebook.txt",
              "arxiv": "arxiv/arxiv.txt",
-             "BlogCatalog": "BlogCatalog/BlogCatalog.mat",
+             "BlogCatalog": "BlogCatalog/edges_format2.txt",
              "lyb": "lyb/lyb.e",
              "USAir": "USAir/USAir.txt"
              }

@@ -29,7 +29,7 @@ def get_roc_score(edges_pos, edges_neg, score_matrix):
     return roc_score, ap_score
 
 def main():
-    net_file = data_utils.get_data_path("lyb")
+    net_file = data_utils.get_data_path("BlogCatalog")
 
     nx_adj = graph_utils.load_networkx_format(net_file)
     g = nx.from_scipy_sparse_matrix(nx_adj)
@@ -63,6 +63,7 @@ def main():
         roc, ap = get_roc_score(test, test_neg, aa_matrix)
         print("%s\t%.6f\t%.6f" % (baseline, roc, ap))
     print("#============================")
+
 
 if __name__ == '__main__':
     main()
