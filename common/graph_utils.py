@@ -2,6 +2,7 @@ import numpy as np
 import networkx as nx
 import scipy.sparse as ss
 import sys
+import common.data_utils as data_utils
 
 def load_graph_adj_map(file_path):
     context_matrix = dict()
@@ -105,14 +106,19 @@ def train_test_split(nx_adj, test_frac=.2, val_frac=.1, pos_neg_ratio=.5):
 
     return train_edges, test_edges, val_edges, train_neg_edges, test_neg_edges, val_neg_edges
 
-def main():
-    net_file = '../data/lyb/lyb.e'
-    nx_adj = load_networkx_format(net_file)
-    train, test, val, train_neg_edges, test_neg_edges, val_neg_edges = train_test_split(nx_adj)
-    print('train:', train)
-    print('test:', test)
-    print('val:', val)
+def dump_network2data(g, file_name):
+    out_file = open(file_name, "w")
+    for u, v in list(g.edges):
+        out_file.writelines(str(u)+"\t"+str(v)+"\n")
+    out_file.close()
 
+def main():
+    net_file = data_utils.get_data_path("twitter")
+    adj = load_networkx_format(net_file)
+    # g = nx.from_scipy_sparse_matrix(adj)
+    # g_int = nx.convert_node_labels_to_integers(g)
+    # out_file = "/Users/shenfan/Code/Project/GraphWorld/data/twitter/twitter.txt"
+    # dump_network2data(g_int, out_file)
 
 if __name__ == '__main__':
     main()

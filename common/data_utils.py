@@ -5,7 +5,8 @@ data_file = {"facebook": "facebook/facebook.txt",
              "arxiv": "arxiv/arxiv.txt",
              "BlogCatalog": "BlogCatalog/edges_format2.txt",
              "lyb": "lyb/lyb.e",
-             "USAir": "USAir/USAir.txt"
+             "USAir": "USAir/USAir.txt",
+             "twitter": "twitter/twitter.txt"
              }
 
 
