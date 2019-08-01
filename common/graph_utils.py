@@ -64,8 +64,6 @@ def train_test_split(nx_adj, test_frac=.2, val_frac=.1, pos_neg_ratio=.5):
     nx_adj.eliminate_zeros()
 
     g = nx.from_scipy_sparse_matrix(nx_adj)
-    orig_num_cc = nx.number_connected_components(g)
-    print("#Connected Components in Network:", orig_num_cc)
 
     adj_triu = ss.triu(nx_adj)
     edges, weights, adj_shape = sparse_to_tuple(adj_triu)
@@ -94,8 +92,6 @@ def train_test_split(nx_adj, test_frac=.2, val_frac=.1, pos_neg_ratio=.5):
         if neg_edge in all_edge_set or neg_edge in neg_edge_set:
             continue
         neg_edge_set.add(neg_edge)
-        if len(neg_edge_set) % 100000 == 0:
-            print('Current num neg edges: ', len(neg_edge_set))
 
     neg_edge_tuples = list(neg_edge_set)
     num_test_neg = int(num_test/pos_neg_ratio)
