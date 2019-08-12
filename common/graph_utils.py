@@ -4,6 +4,7 @@ import scipy.sparse as ss
 import sys
 import common.data_utils as data_utils
 
+
 def load_graph_adj_map(file_path):
     context_matrix = dict()
     max_source = 0

@@ -1,0 +1,59 @@
+twitter
+#nodes: 81306 ,#edges: 1342310
+#pos_neg_ratio=0.5
+#============================
+Method	AUC	AP
+Adamic-Adar	0.960526	0.947006
+Resouce Allocation	0.960695	0.947461
+Jaccard	0.958142	0.939378
+Preferential Attachment	0.888838	0.829739
+#============================
+
+BlogCatalog
+#nodes: 10312 ,#edges: 333983
+#pos_neg_ratio=0.5
+#============================
+Method	AUC	AP
+Adamic-Adar	0.908342	0.867428
+Resouce Allocation	0.910256	0.871713
+Jaccard	0.775579	0.507395
+Preferential Attachment	0.946449	0.910244
+#============================
+
+facebook
+#nodes: 4039 ,#edges: 88234
+#pos_neg_ratio=0.5
+#============================
+Method	AUC	AP
+Adamic-Adar	0.984217	0.967053
+Resouce Allocation	0.985219	0.969424
+Jaccard	0.980416	0.958438
+Preferential Attachment	0.824135	0.744269
+#============================
+
+USAir
+#nodes: 332 ,#edges: 2126
+train 1#719 0#1438
+test 1#205 0#410
+valid 1#102 0#204
+#============================
+Method	AUC	AP
+Adamic-Adar	0.828798	0.748527
+Resouce Allocation	0.829001	0.752926
+Jaccard	0.811707	0.667082
+Preferential Attachment	0.845360	0.754845
+#============================
+
+lyb
+#nodes: 40 ,#edges: 129
+train 1#45 0#90
+test 1#12 0#24
+valid 1#6 0#12
+#============================
+Method	AUC	AP
+Adamic-Adar	0.701389	0.510913
+Resouce Allocation	0.701389	0.510913
+Jaccard	0.699653	0.509325
+Preferential Attachment	0.734375	0.648243
+#============================
+
