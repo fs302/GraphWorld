@@ -1,0 +1,42 @@
+Wed 31 Jul 2019 20:21:20 INFO link_prediction_benchmark.py [facebook] train 1#57501 0#115002
+Wed 31 Jul 2019 20:21:20 INFO link_prediction_benchmark.py [facebook] test 1#16428 0#32856
+Wed 31 Jul 2019 20:21:20 INFO link_prediction_benchmark.py [facebook] valid 1#8214 0#16428
+Wed 31 Jul 2019 20:21:30 INFO link_prediction_benchmark.py [facebook]	Adamic-Adar	0.983833	0.967912
+Wed 31 Jul 2019 20:21:40 INFO link_prediction_benchmark.py [facebook]	Resouce Allocation	0.985090	0.971763
+Wed 31 Jul 2019 20:21:49 INFO link_prediction_benchmark.py [facebook]	Jaccard	0.980551	0.961072
+Wed 31 Jul 2019 20:21:50 INFO link_prediction_benchmark.py [facebook]	Preferential Attachment	0.828018	0.751696
+Wed 31 Jul 2019 20:22:02 INFO link_prediction_benchmark.py [arxiv] train 1#138635 0#277270
+Wed 31 Jul 2019 20:22:02 INFO link_prediction_benchmark.py [arxiv] test 1#39610 0#79220
+Wed 31 Jul 2019 20:22:02 INFO link_prediction_benchmark.py [arxiv] valid 1#19805 0#39610
+Wed 31 Jul 2019 20:22:17 INFO link_prediction_benchmark.py [arxiv]	Adamic-Adar	0.972348	0.961877
+Wed 31 Jul 2019 20:22:31 INFO link_prediction_benchmark.py [arxiv]	Resouce Allocation	0.972561	0.962550
+Wed 31 Jul 2019 20:22:44 INFO link_prediction_benchmark.py [arxiv]	Jaccard	0.971924	0.960943
+Wed 31 Jul 2019 20:22:46 INFO link_prediction_benchmark.py [arxiv]	Preferential Attachment	0.856476	0.785430
+Wed 31 Jul 2019 20:22:54 INFO link_prediction_benchmark.py [BlogCatalog] train 1#116562 0#233124
+Wed 31 Jul 2019 20:22:54 INFO link_prediction_benchmark.py [BlogCatalog] test 1#33303 0#66606
+Wed 31 Jul 2019 20:22:54 INFO link_prediction_benchmark.py [BlogCatalog] valid 1#16651 0#33302
+Wed 31 Jul 2019 20:23:43 INFO link_prediction_benchmark.py [BlogCatalog]	Adamic-Adar	0.908521	0.866066
+Wed 31 Jul 2019 20:24:29 INFO link_prediction_benchmark.py [BlogCatalog]	Resouce Allocation	0.910524	0.870413
+Wed 31 Jul 2019 20:25:15 INFO link_prediction_benchmark.py [BlogCatalog]	Jaccard	0.778329	0.511030
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [BlogCatalog]	Preferential Attachment	0.945706	0.907922
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb] train 1#45 0#90
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb] test 1#12 0#24
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb] valid 1#6 0#12
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb]	Adamic-Adar	0.621528	0.527778
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb]	Resouce Allocation	0.621528	0.527778
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb]	Jaccard	0.602431	0.416667
+Wed 31 Jul 2019 20:25:16 INFO link_prediction_benchmark.py [lyb]	Preferential Attachment	0.500000	0.398380
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir] train 1#719 0#1438
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir] test 1#205 0#410
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir] valid 1#102 0#204
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir]	Adamic-Adar	0.835735	0.750810
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir]	Resouce Allocation	0.837841	0.764540
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir]	Jaccard	0.803379	0.623659
+Wed 31 Jul 2019 20:25:17 INFO link_prediction_benchmark.py [USAir]	Preferential Attachment	0.849839	0.788133
+Wed 31 Jul 2019 20:25:57 INFO link_prediction_benchmark.py [twitter] train 1#693005 0#1386010
+Wed 31 Jul 2019 20:25:57 INFO link_prediction_benchmark.py [twitter] test 1#198001 0#396002
+Wed 31 Jul 2019 20:25:57 INFO link_prediction_benchmark.py [twitter] valid 1#99000 0#198000
+Wed 31 Jul 2019 20:28:28 INFO link_prediction_benchmark.py [twitter]	Adamic-Adar	0.960650	0.947094
+Wed 31 Jul 2019 20:30:46 INFO link_prediction_benchmark.py [twitter]	Resouce Allocation	0.960793	0.947454
+Wed 31 Jul 2019 20:32:55 INFO link_prediction_benchmark.py [twitter]	Jaccard	0.958236	0.939378
+Wed 31 Jul 2019 20:33:04 INFO link_prediction_benchmark.py [twitter]	Preferential Attachment	0.889829	0.830570
