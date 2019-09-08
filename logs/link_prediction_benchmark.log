@@ -40,3 +40,10 @@ Wed 31 Jul 2019 20:28:28 INFO link_prediction_benchmark.py [twitter]	Adamic-Adar
 Wed 31 Jul 2019 20:30:46 INFO link_prediction_benchmark.py [twitter]	Resouce Allocation	0.960793	0.947454
 Wed 31 Jul 2019 20:32:55 INFO link_prediction_benchmark.py [twitter]	Jaccard	0.958236	0.939378
 Wed 31 Jul 2019 20:33:04 INFO link_prediction_benchmark.py [twitter]	Preferential Attachment	0.889829	0.830570
+Sat 07 Sep 2019 17:53:37 INFO link_prediction_benchmark.py [facebook] train 1#61765 0#123530
+Sat 07 Sep 2019 17:53:37 INFO link_prediction_benchmark.py [facebook] test 1#17646 0#35292
+Sat 07 Sep 2019 17:53:37 INFO link_prediction_benchmark.py [facebook] valid 1#8823 0#17646
+Sat 07 Sep 2019 17:53:49 INFO link_prediction_benchmark.py [facebook]	Adamic-Adar	0.985740	0.968387
+Sat 07 Sep 2019 17:54:00 INFO link_prediction_benchmark.py [facebook]	Resouce Allocation	0.986840	0.972100
+Sat 07 Sep 2019 17:54:09 INFO link_prediction_benchmark.py [facebook]	Jaccard	0.982615	0.961724
+Sat 07 Sep 2019 17:54:10 INFO link_prediction_benchmark.py [facebook]	Preferential Attachment	0.827668	0.749475
