@@ -17,10 +17,10 @@ def train(args, model, device, train_graphs, optimizer, epoch):
     model.train()
 
     total_iters = args.iters_per_epoch
-    pbar = tqdm(range(total_iters), unit='batch')
+    # pbar = tqdm(range(total_iters), unit='batch')
 
     loss_accum = 0
-    for pos in pbar:
+    for pos in range(total_iters):
         selected_idx = np.random.permutation(len(train_graphs))[:args.batch_size]
 
         batch_graph = [train_graphs[idx] for idx in selected_idx]
@@ -41,7 +41,7 @@ def train(args, model, device, train_graphs, optimizer, epoch):
         loss_accum += loss
 
         # report
-        pbar.set_description('epoch: %d' % (epoch))
+        # pbar.set_description('epoch: %d' % (epoch))
 
     average_loss = loss_accum / total_iters
     print("loss training: %f" % (average_loss))
@@ -87,7 +87,7 @@ def main():
     # Note: Hyper-parameters need to be tuned in order to obtain results reported in the paper.
     parser = argparse.ArgumentParser(
         description='PyTorch graph convolutional neural net for whole-graph classification')
-    parser.add_argument('--dataset', type=str, default="MUTAG",
+    parser.add_argument('--dataset', type=str, default="IMDBBINARY",
                         help='name of dataset (default: MUTAG)')
     parser.add_argument('--device', type=int, default=0,
                         help='which gpu to use if any (default: 0)')
@@ -95,9 +95,9 @@ def main():
                         help='input batch size for training (default: 32)')
     parser.add_argument('--iters_per_epoch', type=int, default=50,
                         help='number of iterations per each epoch (default: 50)')
-    parser.add_argument('--epochs', type=int, default=20,
+    parser.add_argument('--epochs', type=int, default=50,
                         help='number of epochs to train (default: 20)')
-    parser.add_argument('--lr', type=float, default=0.01,
+    parser.add_argument('--lr', type=float, default=0.001,
                         help='learning rate (default: 0.01)')
     parser.add_argument('--seed', type=int, default=0,
                         help='random seed for splitting the dataset into 10 (default: 0)')
@@ -107,7 +107,7 @@ def main():
                         help='number of layers INCLUDING the input one (default: 5)')
     parser.add_argument('--num_mlp_layers', type=int, default=2,
                         help='number of layers for MLP EXCLUDING the input one (default: 2). 1 means linear model.')
-    parser.add_argument('--hidden_dim', type=int, default=64,
+    parser.add_argument('--hidden_dim', type=int, default=128,
                         help='number of hidden units (default: 64)')
     parser.add_argument('--final_dropout', type=float, default=0.5,
                         help='final layer dropout (default: 0.5)')
@@ -145,6 +145,7 @@ def main():
     for epoch in range(1, args.epochs + 1):
         scheduler.step()
 
+        print("$epoch", epoch)
         avg_loss = train(args, model, device, train_graphs, optimizer, epoch)
         acc_train, acc_test = test(args, model, device, train_graphs, test_graphs, epoch)
 
@@ -152,9 +153,8 @@ def main():
             with open(args.filename, 'w') as f:
                 f.write("%f %f %f" % (avg_loss, acc_train, acc_test))
                 f.write("\n")
-        print("")
-
-        print(model.eps)
+        print()
+        # print(model.eps)
 
 
 if __name__ == '__main__':

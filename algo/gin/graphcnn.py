@@ -59,13 +59,18 @@ class GraphCNN(nn.Module):
 
             self.batch_norms.append(nn.BatchNorm1d(hidden_dim))
 
-        # Linear function that maps the hidden representation at dofferemt layers into a prediction score
+        # Linear function that maps the hidden representation at different layers into a prediction score
         self.linears_prediction = torch.nn.ModuleList()
         for layer in range(num_layers):
             if layer == 0:
                 self.linears_prediction.append(nn.Linear(input_dim, output_dim))
             else:
                 self.linears_prediction.append(nn.Linear(hidden_dim, output_dim))
+
+        print("# model settings start #")
+        print("num_layers:%d, num_mlp_layers:%d, learn_eps:%f, final_dropout:%f" % (num_layers, num_mlp_layers, learn_eps, final_dropout))
+        print("input_dim:%d, hidden_dim:%d, output_dim:%d" % (input_dim, hidden_dim, output_dim))
+        print("# model settings end #")
 
 
     def __preprocess_neighbors_maxpool(self, batch_graph):

@@ -7,6 +7,19 @@ import random
 import torch
 from sklearn.model_selection import StratifiedKFold
 
+
+def load_node_labels(file_path):
+    labels = {}
+    with open(file_path) as f:
+        print("loading file:", file_path)
+        for l in f:
+            data = l.strip().split()
+            id = int(data[0])
+            label = data[1]
+            labels[id] = label
+    return labels
+
+
 def load_graph_adj_map(file_path):
     context_matrix = dict()
     max_source = 0
@@ -28,9 +41,8 @@ def load_graph_adj_map(file_path):
             context_matrix[id1][id2] = weight
     return context_matrix, max_source, max_target
 
-
-def load_networkx_format(file_path):
-    g = nx.DiGraph()
+def load_basic_network(file_path):
+    g = nx.Graph()
     try:
         with open(file_path) as f:
             print("loading file:", file_path)
@@ -42,13 +54,18 @@ def load_networkx_format(file_path):
                     weight = float(data[2])
                 else:
                     weight = 1.0
-                g.add_edge(id1, id2)
+                g.add_edge(id1, id2, weight=weight)
     except IOError:
         print("error:", sys.exc_info()[0])
         raise
     print("#nodes:",g.number_of_nodes(),",#edges:",g.number_of_edges())
-    nx_adj = nx.adj_matrix(g)
-    return nx_adj
+    return g
+
+
+def load_networkx_format(file_path):
+    g = load_basic_network(file_path)
+    # Note: after convert into adjency matrix, node id will be re-ranked from 0
+    return nx.adj_matrix(g)
 
 
 def sparse_to_tuple(sparse_mx):
@@ -247,7 +264,6 @@ def separate_graph_data(graph_list, seed, fold_idx):
     test_graph_list = [graph_list[i] for i in test_idx]
 
     return train_graph_list, test_graph_list
-
 
 
 def main():

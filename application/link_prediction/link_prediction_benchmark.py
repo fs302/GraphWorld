@@ -1,3 +1,7 @@
+import os, sys
+projct_root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(projct_root_path)
+
 import networkx as nx
 import numpy as np
 from sklearn.metrics import roc_auc_score
@@ -12,7 +16,7 @@ logger = logging.getLogger(logger_name)
 logger.setLevel(logging.DEBUG)
 
 # create file handler
-log_path = "../../logs/link_prediction_benchmark.log"
+log_path = projct_root_path+"/logs/link_prediction_benchmark.log"
 fh = logging.FileHandler(log_path)
 fh.setLevel(logging.INFO)
 
