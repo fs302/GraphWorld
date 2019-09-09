@@ -13,3 +13,4 @@ Personal practice on Graph Mining and Network Science
 | IMDBBINARY  | a movie collaboration dataset in ego-network format | 100 graphs and 2 classes | Graph Classification |
 | MUTAG  | a bioinformatics networks | 188 graphs and 2 classes | Graph Classification |
 | PTC  | a chemical networks | 344 graphs and 2 classes | Graph Classification |
+| twitter  | Social circles from Twitter  | 81,306 nodes and 1,342,310 edges | Link Prediction |

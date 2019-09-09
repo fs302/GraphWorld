@@ -1,5 +1,5 @@
 import numpy
-
+from scipy import stats
 
 def get_AP(k, ideal, test):
     """
@@ -77,3 +77,12 @@ def get_MnDCG(k, ideal_map, test_map):
     if len(ideal_map) == 0:
         return 0
     return accumulation / len(ideal_map)
+
+def kendallTau(map1, map2):
+    x = []
+    y = []
+    for k in map1:
+        x.append(map1[k])
+        y.append(map2[k])
+    tau, p_value = stats.kendalltau(x, y)
+    return tau, p_value

@@ -20,6 +20,3 @@ if __name__ == '__main__':
     lgm = Local_gravity_model(g)
     print("Local Gravity Model:")
     print(sorted(lgm.items(), key=lambda v: v[1], reverse=True))
-    pagerank = nx.pagerank(g)
-    print("PageRank:")
-    print(sorted(pagerank.items(), key=lambda v: v[1], reverse=True))
