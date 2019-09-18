@@ -9,6 +9,7 @@ sys.path.append(projct_root_path)
 import common.graph_utils as graph_utils
 import common.data_utils as data_utils
 import random
+import EoN
 
 # Thanks Sara for a better virsion
 def individual_SIR(G,node,beta):

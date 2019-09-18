@@ -1,6 +1,14 @@
 # GraphWorld
 Personal practice on Graph Mining and Network Science
 
+## Algorithms
+
+* Representation Learning on Graph
+    + Node2Vec
+    + Graph Isomorphism Network
+* Influence 
+    + Local Grapvity Model
+
 ## Data
 
 | DataSet     | Description | Statistics | Usage |
