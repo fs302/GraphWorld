@@ -1,6 +1,6 @@
 import networkx as nx
 
-def Local_gravity_model(g, depth=3):
+def Local_gravity_model(g, depth=2):
     lgm_results = {}
     degrees = dict(g.degree())
     for node in g.nodes():
@@ -31,6 +31,8 @@ def Local_gravity_model(g, depth=3):
 
 if __name__ == '__main__':
     g = nx.karate_club_graph()
+    for edge in g.edges():
+        print(edge[0],edge[1])
     print(len(g.nodes()), len(g.edges()))
     lgm = Local_gravity_model(g)
     print("Local Gravity Model:")

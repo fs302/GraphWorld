@@ -13,11 +13,6 @@ import matplotlib.pyplot as plt
 from algo.influence.lgm import Local_gravity_model
 from algo.influence.sir import sir_ranking
 
-font_path = '/Users/shenfan/anaconda2/envs/py3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/SimHei.ttf'
-import matplotlib.font_manager as fm
-myfont = fm.FontProperties(fname=font_path)
-from matplotlib.font_manager import _rebuild
-_rebuild()
 import matplotlib
 matplotlib.rcParams['font.sans-serif'] = ['SimHei'] 
 matplotlib.rcParams['font.family'] ='sans-serif'
@@ -25,27 +20,33 @@ matplotlib.rcParams['font.family'] ='sans-serif'
 matplotlib.rcParams['axes.unicode_minus'] = False 
 
 def main():
-    test_network = ["lyb","facebook","twitter","BlogCatalog"]
+    test_network = ["karate_club","facebook"]
     for net in test_network:
-        net_file = data_utils.get_data_path("lyb")
+        net_file = data_utils.get_data_path(net)
         g = graph_utils.load_basic_network(net_file)
-        sir = sir_ranking(g,num_epoch=250)
+        sir_file = net_file.split('.')[0]+'-sir.txt'
+        sir = {}
+        if os.path.exists(sir_file):
+            with open(sir_file,'r') as f:
+                for l in f:
+                    data = l.split()
+                    id = int(data[0])
+                    score = float(data[1])
+                    sir[id] = score 
+        else:
+            print("SIR Simulation start.")
+            sir = sir_ranking(g, gamma=1.0, num_epoch=100)
+            print("SIR Simulation end.")
         centralities = [nx.degree_centrality, nx.closeness_centrality, nx.eigenvector_centrality, 
             nx.pagerank, Local_gravity_model]
         for c in centralities:
             if c.__name__ == 'pagerank':
-                res = c(g, alpha=0.8, tol=0.001)
+                res = c(g, alpha=0.95)
+            elif c.__name__=='Local_gravity_model':
+                res = c(g, depth=2)
             else:
                 res = c(g)
-            # res_list = [(v, round(c,4)) for v, c in res.items()]
             tau, p = kendallTau(res, sir)
             print("%s\t%s\t%f" % (net,c.__name__, tau))
-            # visialize
-            # v_max = max([v for k,v in res_list])
-            # vmap = [v/v_max for k,v in res_list]
-            # nx.draw_spring(g, with_labels=True,labels=node_labels, node_color=vmap,
-            #                 font_size=8, node_size=350)
-            # plt.show()
-
 if __name__ == '__main__':
     main()

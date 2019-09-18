@@ -9,7 +9,8 @@ edge_file = {"facebook": "facebook/facebook.txt",
              "twitter": "twitter/twitter.txt",
              "MUTAG": "MUTAG/MUTAG.txt",
              "IMDBBINARY": "IMDBBINARY/IMDBBINARY.txt",
-             "PTC": "PTC/PTC.txt"
+             "PTC": "PTC/PTC.txt",
+             "karate_club":"karate_club/karate_club.txt"
              }
 
 node_file = {"lyb" : "lyb/lyb.v"}

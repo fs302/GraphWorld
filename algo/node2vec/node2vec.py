@@ -43,9 +43,9 @@ class Graph():
 		G = self.G
 		walks = []
 		nodes = list(G.nodes())
-		print 'Walk iteration:'
+		print('Walk iteration:')
 		for walk_iter in range(num_walks):
-			print str(walk_iter+1), '/', str(num_walks)
+			print(str(walk_iter+1), '/', str(num_walks))
 			random.shuffle(nodes)
 			for node in nodes:
 				walks.append(self.node2vec_walk(walk_length=walk_length, start_node=node))
@@ -62,12 +62,13 @@ class Graph():
 
 		unnormalized_probs = []
 		for dst_nbr in sorted(G.neighbors(dst)):
+			weight = G[dst][dst_nbr]['weight'] if 'weight' in G[dst][dst_nbr] else 1.0
 			if dst_nbr == src:
-				unnormalized_probs.append(G[dst][dst_nbr]['weight']/p)
+				unnormalized_probs.append(weight/p)
 			elif G.has_edge(dst_nbr, src):
-				unnormalized_probs.append(G[dst][dst_nbr]['weight'])
+				unnormalized_probs.append(weight)
 			else:
-				unnormalized_probs.append(G[dst][dst_nbr]['weight']/q)
+				unnormalized_probs.append(weight/q)
 		norm_const = sum(unnormalized_probs)
 		normalized_probs =  [float(u_prob)/norm_const for u_prob in unnormalized_probs]
 
@@ -82,7 +83,7 @@ class Graph():
 
 		alias_nodes = {}
 		for node in G.nodes():
-			unnormalized_probs = [G[node][nbr]['weight'] for nbr in sorted(G.neighbors(node))]
+			unnormalized_probs = [G[node][nbr]['weight'] if 'weight' in G[node][nbr] else 1.0 for nbr in sorted(G.neighbors(node))]
 			norm_const = sum(unnormalized_probs)
 			normalized_probs =  [float(u_prob)/norm_const for u_prob in unnormalized_probs]
 			alias_nodes[node] = alias_setup(normalized_probs)
