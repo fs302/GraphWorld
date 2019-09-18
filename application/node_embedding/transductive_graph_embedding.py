@@ -7,6 +7,7 @@ import networkx as nx
 import numpy as np
 from gensim.models import Word2Vec
 import algo.node2vec.node2vec as node2vec 
+from networkx.algorithms.community import greedy_modularity_communities
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 import matplotlib
@@ -18,12 +19,12 @@ matplotlib.rcParams['axes.unicode_minus'] = False
 class node2vec_emb():
     def __init__(self, 
                     g, 
-                    p = 1, 
-                    q = 1, 
-                    out_dim=16, 
+                    p = 1, # a larger p donates less likely to return to previous node
+                    q = 1, # a larger q donates less likely to explore far away
+                    out_dim = 16, 
                     num_walks = 10, 
                     walk_length = 80, 
-                    window_size=10):
+                    window_size = 10):
         self.p = p
         self.q = q
         self.num_walks = num_walks
@@ -54,7 +55,7 @@ def tsne_plot(model, node_labels):
         tokens.append(model[word])
         labels.append(node_labels[int(word)])
     
-    tsne_model = TSNE(n_components=2, perplexity=50, learning_rate=20.0, n_iter=1000, random_state=23)
+    tsne_model = TSNE(n_components=2, perplexity=100, learning_rate=20.0, n_iter=1000, random_state=23)
     new_values = tsne_model.fit_transform(tokens)
 
     x = []
@@ -74,17 +75,34 @@ def tsne_plot(model, node_labels):
                      va='bottom')
     plt.show()
 
-def main():
-    # g = nx.karate_club_graph()
+def explore_lyb():
     net_file = data_utils.get_data_path("lyb")
     g = graph_utils.load_basic_network(net_file)
-    n2v_emb = node2vec_emb(g,p=1,q=1, out_dim=128, num_walks=20)
+    n2v_emb = node2vec_emb(g,p=0.5,q=2, out_dim=16, num_walks=20)
+    n2v_emb.learn_embedding()
+
+    # out_file = net_file.split('.')[0]+'-n2v_emb.txt'
+    # n2v_emb.output_embedding(out_file)
+    
+    node_labels = graph_utils.load_node_labels(data_utils.get_node_path("lyb"))
+    sus_best = n2v_emb.model.most_similar(positive=['23'])
+    for item in sus_best:
+        print(node_labels[int(item[0])], item[1])
+    com = list(greedy_modularity_communities(g))
+    node_community = {}
+    for i,c in enumerate(com):
+        for node in c:
+            node_community[node_labels[node]] = i
+    print(node_community)
+    # tsne_plot(n2v_emb.model, node_labels)
+
+def main():
+    net_file = data_utils.get_data_path("facebook")
+    g = graph_utils.load_basic_network(net_file)
+    n2v_emb = node2vec_emb(g,p=0.5,q=2, out_dim=64, num_walks=20)
     n2v_emb.learn_embedding()
     out_file = net_file.split('.')[0]+'-n2v_emb.txt'
     n2v_emb.output_embedding(out_file)
-    # node_labels = graph_utils.load_node_labels(data_utils.get_node_path("lyb"))
-    # print(n2v_emb.model.most_similar(positive=['23']))
-    #tsne_plot(n2v_emb.model, node_labels)
     
 
 if __name__ == '__main__':

@@ -2,3 +2,4 @@ __pycache__
 *.pc
 *.pyc
 config.py
+.vscode
