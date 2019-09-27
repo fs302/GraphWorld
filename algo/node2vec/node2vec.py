@@ -1,7 +1,7 @@
 import numpy as np
 import networkx as nx
 import random
-
+from gensim.models import Word2Vec
 
 class Graph():
 	def __init__(self, nx_G, is_directed, p, q):
@@ -148,3 +148,34 @@ def alias_draw(J, q):
 	    return kk
 	else:
 	    return J[kk]
+
+
+class node2vec_emb():
+    def __init__(self, 
+                    g, 
+                    p = 1, # a larger p donates less likely to return to previous node
+                    q = 1, # a larger q donates less likely to explore far away
+                    out_dim = 16, 
+                    num_walks = 10, 
+                    walk_length = 80, 
+                    window_size = 10):
+        self.p = p
+        self.q = q
+        self.num_walks = num_walks
+        self.walk_length = walk_length
+        self.G = Graph(g, g.is_directed(), p, q)
+        self.dimensions = out_dim
+        self.window_size = window_size
+        self.workers = 8
+        self.iter = 1
+        self.model = None
+        self.emb = {}
+
+    def learn_embedding(self):
+        self.G.preprocess_transition_probs()
+        simulate_walks = self.G.simulate_walks(self.num_walks, self.walk_length)
+        walks = [list(map(str, walk)) for walk in simulate_walks]
+        self.model = Word2Vec(walks, size=self.dimensions, window=self.window_size, min_count=0, sg=1, workers=self.workers, iter=self.iter)
+
+    def output_embedding(self, outfile):
+        self.model.wv.save_word2vec_format(outfile)

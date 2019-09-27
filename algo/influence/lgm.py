@@ -1,4 +1,9 @@
 import networkx as nx
+import os, sys
+projct_root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(projct_root_path)
+import common.graph_utils as graph_utils
+import common.data_utils as data_utils
 
 def Local_gravity_model(g, depth=2):
     lgm_results = {}
@@ -30,10 +35,9 @@ def Local_gravity_model(g, depth=2):
     return lgm_results
 
 if __name__ == '__main__':
-    g = nx.karate_club_graph()
-    for edge in g.edges():
-        print(edge[0],edge[1])
-    print(len(g.nodes()), len(g.edges()))
+    # g = nx.karate_club_graph()
+    net_file = data_utils.get_data_path("lyb")
+    g = graph_utils.load_basic_network(net_file)
     lgm = Local_gravity_model(g)
     print("Local Gravity Model:")
     print(sorted(lgm.items(), key=lambda v: v[1], reverse=True))
