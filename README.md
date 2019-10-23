@@ -7,7 +7,9 @@ Practice on Graph Mining and Network Science
     + Node2Vec
     + Graph Isomorphism Network
 * Influence 
+    + SIR Model
     + Local Grapvity Model
+    + DeepInf GNN Model
 
 ## Data
 
