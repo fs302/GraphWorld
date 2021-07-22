@@ -3,3 +3,17 @@ __pycache__
 *.pyc
 config.py
 .vscode
+
+algo/deep_inf/*.ipynb
+algo/deep_inf/.ipynb_checkpoints
+algo/deep_inf/facebook_preprocess
+algo/deep_inf/lyb_preprocess
+
+application/data/
+application/*/.ipynb_checkpoints
+application/link_prediction/dataset
+application/link_prediction/*.ipynb
+
+data/facebook/facebook-*.txt
+.idea
+.vscode/*
