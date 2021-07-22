@@ -2,6 +2,7 @@ import numpy as np
 import networkx as nx
 from matplotlib import pyplot as plt
 
+
 def draw_degree_dist(g, degree_base=0, title='Network Distribution'):
     degree_freq = nx.degree_histogram(g)
     degree_x = range(len(degree_freq))
@@ -33,11 +34,19 @@ def network_stats(graph, network_name='Network'):
     c = nx.average_clustering(graph)
     print("聚类系数："+str(c))
 
-    #计算平均最短路径
-    p = nx.average_shortest_path_length(graph)
-    print("平均最短路径："+str(p))
+    # #计算平均最短路径
+    if nx.is_connected(graph):
+        p = nx.average_shortest_path_length(graph)
+        print("平均最短路径："+str(p))
 
-n = 10000
+n = 1000
+# ER-Network
+p = 0.005
+g = nx.erdos_renyi_graph(n, p)
+g = g.to_undirected()
+draw_degree_dist(g, title='ER-Network Distribution')
+network_stats(g, 'ER-Network')
+
 # BA-Network
 m = 10
 g = nx.barabasi_albert_graph(n, m)
@@ -46,9 +55,8 @@ draw_degree_dist(g, m, title='BA-Network Distribution')
 network_stats(g, 'BA-Network')
 
 # WS-Network
-n = 10000
-k = 10
-p = 0.1
+k = 20
+p = 0.01
 g = nx.watts_strogatz_graph(n, k, p)
 g = g.to_undirected()
 draw_degree_dist(g, k, title='WS-Network Distribution')
@@ -61,3 +69,16 @@ g = nx.powerlaw_cluster_graph(n, m, p)
 g = g.to_undirected()
 draw_degree_dist(g, m, title='PC-Network Distribution')
 network_stats(g, 'PC-Network')
+
+# Facebook Network
+import os, sys
+projct_root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(projct_root_path)
+import common.graph_utils as graph_utils
+import common.data_utils as data_utils
+
+net_file = data_utils.get_data_path("facebook")
+g = graph_utils.load_basic_network(net_file)
+g = g.to_undirected()
+draw_degree_dist(g, m, title='Facebook-Network Distribution')
+network_stats(g, 'Facebook-Network')
