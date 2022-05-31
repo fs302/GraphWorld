@@ -5,12 +5,16 @@ Practice on Graph Mining and Network Science
 
 * Representation Learning on Graph
     + Node2Vec
-    + Graph Isomorphism Network
+    + GraphSage
+    + GCN
+    + GAT
+    + APPNP
 * Influence 
     + SIR Model
     + Local Grapvity Model
     + DeepInf GNN Model
-
+* Graph Classification
+    + Graph Isomorphism Network
 ## Data
 
 | DataSet     | Description | Statistics | Usage |
