@@ -9,7 +9,9 @@ sys.path.append(projct_root_path)
 
 from algo.gnn.gcn import GCN
 from algo.gnn.graphsage import GraphSage
+from algo.gnn.gat import GAT
 from algo.gnn.appnp import APPNP_Net
+
 
 dataset = Planetoid(root='../data/', name='Cora', transform=NormalizeFeatures())
 
@@ -70,7 +72,7 @@ def run_exp(num_epoch, model_name, model, optimizer, criterion):
         test_acc = test(data.test_mask, model)
         if test_acc > best_test_acc:
             best_test_acc = test_acc
-        if epoch % 10 == 0:
+        if epoch % 100 == 0:
             print(f'model: {model_name}, Epoch: {epoch:03d}, Loss: {loss:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}')
     et = time.time()
     p_time = (et-st)/num_epoch*100
@@ -88,6 +90,11 @@ model = GraphSage(dataset.num_features, hidden_channels=16, out_channels=dataset
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
 run_exp(num_epoch, 'GraphSage', model, optimizer, criterion)
 
+# GAT
+model = GAT(dataset.num_features, hidden_channels=16, out_channels=dataset.num_classes, heads=8)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=5e-4)
+criterion = torch.nn.CrossEntropyLoss()
+run_exp(num_epoch, 'GAT', model, optimizer, criterion)
 
 # APPNP
 model = APPNP_Net(dataset.num_features, hidden_channels=16, out_channels=dataset.num_classes)
