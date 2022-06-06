@@ -76,7 +76,7 @@ def run_exp(num_epoch, model_name, model, optimizer, criterion):
             print(f'model: {model_name}, Epoch: {epoch:03d}, Loss: {loss:.4f}, Val: {val_acc:.4f}, Test: {test_acc:.4f}')
     et = time.time()
     p_time = (et-st)/num_epoch*100
-    print(f'model: {model_name}, time_userd_100_epoch:{p_time:.2f}, best_test_acc:{best_test_acc:.4f}') 
+    print(f'model: {model_name}, time_used_100_epoch:{p_time:.2f}, best_test_acc:{best_test_acc:.4f}') 
 
 num_epoch = 500
 # GCN
