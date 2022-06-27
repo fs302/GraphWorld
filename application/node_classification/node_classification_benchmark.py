@@ -56,12 +56,12 @@ def train(model, criterion, optimizer):
     return loss
 
 def test(mask, model):
-      model.eval()
-      out = model(data.x, data.edge_index)
-      pred = out.argmax(dim=1)  # Use the class with highest probability.
-      correct = pred[mask] == data.y[mask]  # Check against ground-truth labels.
-      acc = int(correct.sum()) / int(mask.sum())  # Derive ratio of correct predictions.
-      return acc
+    model.eval()
+    out = model(data.x, data.edge_index)
+    pred = out.argmax(dim=1)  # Use the class with highest probability.
+    correct = pred[mask] == data.y[mask]  # Check against ground-truth labels.
+    acc = int(correct.sum()) / int(mask.sum())  # Derive ratio of correct predictions.
+    return acc
 
 def run_exp(num_epoch, model_name, model, optimizer, criterion):
     st = time.time()
