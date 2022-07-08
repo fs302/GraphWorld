@@ -148,6 +148,13 @@ class S2VGraph(object):
 
         self.max_neighbor = 0
 
+def homo_ratio(edge_list, labels):
+    match, total = 0, 0
+    for edge in edge_list:
+        total += 1
+        match += 1 if labels[edge[0]] == labels[edge[1]] else 0
+    hr = np.round(match/total, 6)
+    return hr
 
 def load_graphs(file_path, degree_as_tag):
     '''
